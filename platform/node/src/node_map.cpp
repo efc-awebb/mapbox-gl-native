@@ -545,6 +545,10 @@ void NodeMap::AddSource(const Nan::FunctionCallbackInfo<v8::Value>& info) {
         return Nan::ThrowTypeError("First argument must be a string");
     }
 
+    if (!info[1]->IsObject()) {
+        return Nan::ThrowTypeError("Second argument must be an object");
+    }
+
     Error error;
     mbgl::optional<std::unique_ptr<Source>> source = convert<std::unique_ptr<Source>>(info[1], error, *Nan::Utf8String(info[0]));
     if (!source) {
