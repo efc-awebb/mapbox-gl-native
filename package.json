@@ -1,5 +1,5 @@
 {
-  "name": "@mapbox/mapbox-gl-native",
+  "name": "efc-awebb/mapbox-gl-native",
   "version": "3.5.5",
   "description": "Renders map tiles with Mapbox GL",
   "keywords": [
