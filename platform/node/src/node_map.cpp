@@ -65,6 +65,7 @@ void NodeMap::Init(v8::Local<v8::Object> target) {
     Nan::SetPrototypeMethod(tpl, "setBearing", SetBearing);
     Nan::SetPrototypeMethod(tpl, "setPitch", SetPitch);
 
+    Nan::SetPrototypeMethod(tpl, "getBounds", GetBounds);
     Nan::SetPrototypeMethod(tpl, "dumpDebugLogs", DumpDebugLogs);
     Nan::SetPrototypeMethod(tpl, "queryRenderedFeatures", QueryRenderedFeatures);
 
