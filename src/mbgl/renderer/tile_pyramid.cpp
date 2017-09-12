@@ -138,14 +138,12 @@ void TilePyramid::update(const std::vector<Immutable<style::Layer::Impl>>& layer
         std::unique_ptr<Tile> tile = cache.get(tileID);
         if (!tile) {
             tile = createTile(tileID);
-            if (tile) {
-                tile->setObserver(observer);
-                tile->setLayers(layers);
+            if (!tile) {
+                return nullptr;
             }
+            tile->setObserver(observer);
         }
-        if (!tile) {
-            return nullptr;
-        }
+        tile->setLayers(layers);
         return tiles.emplace(tileID, std::move(tile)).first->second.get();
     };
     auto renderTileFn = [&](const UnwrappedTileID& tileID, Tile& tile) {
