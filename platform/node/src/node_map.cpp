@@ -873,16 +873,14 @@ void NodeMap::GetBounds(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     auto nodeMap = Nan::ObjectWrap::Unwrap<NodeMap>(info.Holder());
     if (!nodeMap->map) return Nan::ThrowError(releasedMessage());
 
-    std::string s;
-    s.append(std::to_string(nodeMap->map->getLatLngBounds()->south()));
-    s.append(",");
-    s.append(std::to_string(nodeMap->map->getLatLngBounds()->west()));
-    s.append(",");
-    s.append(std::to_string(nodeMap->map->getLatLngBounds()->north()));
-    s.append(",");
-    s.append(std::to_string(nodeMap->map->getLatLngBounds()->east()));
+    auto array = Nan::New<v8::Array>();
 
-    info.GetReturnValue().Set(s);
+    array->Set(0, nodeMap->map->getLatLngBounds()->south());
+    array->Set(1, nodeMap->map->getLatLngBounds()->west());
+    array->Set(2, nodeMap->map->getLatLngBounds()->north());
+    array->Set(3, nodeMap->map->getLatLngBounds()->east());
+
+    info.GetReturnValue().Set(array);
 }
 
 void NodeMap::DumpDebugLogs(const Nan::FunctionCallbackInfo<v8::Value>& info) {
