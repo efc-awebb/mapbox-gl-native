@@ -875,10 +875,10 @@ void NodeMap::GetBounds(const Nan::FunctionCallbackInfo<v8::Value>& info) {
 
     auto array = Nan::New<v8::Array>();
 
-    array->Set(0, nodeMap->map->getLatLngBounds()->south());
-    array->Set(1, nodeMap->map->getLatLngBounds()->west());
-    array->Set(2, nodeMap->map->getLatLngBounds()->north());
-    array->Set(3, nodeMap->map->getLatLngBounds()->east());
+    array->Set(0, Nan::New<String>(std::to_string(nodeMap->map->getLatLngBounds()->south())).ToLocalChecked());
+    array->Set(1, Nan::New<String>(std::to_string(nodeMap->map->getLatLngBounds()->west()) ).ToLocalChecked());
+    array->Set(2, Nan::New<String>(std::to_string(nodeMap->map->getLatLngBounds()->north())).ToLocalChecked());
+    array->Set(3, Nan::New<String>(std::to_string(nodeMap->map->getLatLngBounds()->east()) ).ToLocalChecked());
 
     info.GetReturnValue().Set(array);
 }
