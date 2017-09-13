@@ -873,7 +873,12 @@ void NodeMap::GetBounds(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     auto nodeMap = Nan::ObjectWrap::Unwrap<NodeMap>(info.Holder());
     if (!nodeMap->map) return Nan::ThrowError(releasedMessage());
 
-    auto array = nodeMap->map->getLatLngBounds();
+    auto array = [
+        nodeMap->map->getLatLngBounds()->south(),
+        nodeMap->map->getLatLngBounds()->west(),
+        nodeMap->map->getLatLngBounds()->north(),
+        nodeMap->map->getLatLngBounds()->east()
+    ];
 
     info.GetReturnValue().Set(array);
 }
